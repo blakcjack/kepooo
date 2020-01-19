@@ -60,7 +60,7 @@ body = bs4DashBody(
            bs4Card(width = 12, title = NULL, headerBorder = FALSE, maximizable = FALSE, closable = FALSE, collapsible = FALSE,
                    fluidRow(
                      textInput("userid", NULL, placeholder = "username or @username", width = "63%"),
-                     actionButton("stalking", "Kepooo", class = "btn btn-info", icon = icon("twitter"), width = "35%",
+                     actionButton("stalking", "Kepoooin", class = "btn btn-info", icon = icon("twitter"), width = "35%",
                                   style = "height: 38px;background:#fff;color:#4dc3eb;font-weight:bold;")
                    )
            ),
@@ -90,7 +90,7 @@ body = bs4DashBody(
 ), 
 controlbar = NULL, 
 footer = bs4DashFooter(copyrights = HTML("&copy; 2020 @aephidayatuloh"), right_text = sprintf("version %s (%s)", v, vdt)), 
-title = "Twitter Stalker", 
+title = sprintf("%s - v%s", header_title, v), 
 old_school = FALSE, 
 sidebar_mini = FALSE, 
 sidebar_collapsed = TRUE, 
@@ -127,7 +127,7 @@ server <- function(input, output, session){
       
       # req(input$userid)
       userid <- trimws(gsub("@", "", input$userid), "both")
-      message(sprintf("Username : @%s", userid))
+      message(sprintf("Username : @%s at %s", userid, Sys.time()))
       start_time <- Sys.time()
       tweets <- rtweet::get_timelines(userid, n = nmax, token = tk)
       ntweets <- nrow(tweets)
